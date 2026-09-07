@@ -1,78 +1,64 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
-	"slices"
+	"os"
+	"strings"
 
+	"github.com/fajarworks/koda-b9-go/internal"
 	"github.com/fajarworks/koda-b9-go/internal/model"
+	"github.com/fajarworks/koda-b9-go/internal/rectangle"
 )
 
-func areaOfRectangle(p int8, l int8) int16 {
-	return int16(p) * int16(l)
-
-}
-
-func circumferenceOfRectangle(p int8, l int8) int16 {
-	return 2 * (int16(p) + int16(l))
-}
-
-func areaAndCircumOfRectangle(p int8, l int8) (area int16, circum int16) {
-	area = int16(p) * int16(l)
-	circum = 2 * (int16(p) + int16(l))
-	return area, circum
-}
-
-func getAreaAndCircum(area func(int8, int8) int16, circum func(int8, int8) int16, p int8, l int8) (a int16, b int16) {
-	a = area(p, l)
-	b = circum(p, l)
-	return a, b
-}
-
-func window(x int) error {
-	var a string
-	var b string
-	for i := 0; i < x; i++ {
-		for j := 0; j < x; j++ {
-			if i == 0 || i == x-1 || j == 0 || j == x-1 {
-				a = "* "
-				fmt.Print(a)
-			} else {
-				a = "  "
-				fmt.Print(a)
-			}
-		}
-		b = " "
-		fmt.Println(b)
-
-	}
-	return nil
-}
-
-func insertNumToSlice() []int {
-	number := []int{50, 70, 66, 20, 32, 90}
-	idx := slices.Index(number, 66) + 1
-	leftSlices := make([]int, 3)
-	copy(leftSlices, number[:idx])
-	leftSlices = append(leftSlices, 88)
-	newSlices := append(leftSlices, number[idx:]...)
-	for _, v := range newSlices {
-		fmt.Println(v)
-	}
-	return newSlices
-}
-
 func main() {
-	var p int8 = 5
-	var l int8 = 10
+	fmt.Println("======== MINI TASK GOLANG DAY 1 ========")
+	fmt.Println()
+	fmt.Println("1. Area of Rectangle")
+	fmt.Println("2. Circumference of Rectangle")
+	fmt.Println("3. Area and Circumference of Rectangle")
+	fmt.Println("4. Make a window with loop")
+	fmt.Println("5. Insert a 88 after 66 in slices")
+	fmt.Println("6. Create biodata from struct field")
+	fmt.Println("0. Exit")
+	fmt.Println()
+	fmt.Println("========================================")
 
-	fmt.Println(areaOfRectangle(p, l))
-	fmt.Println(circumferenceOfRectangle(p, l))
+	scanner := bufio.NewReader(os.Stdin)
 
-	area, circum := areaAndCircumOfRectangle(p, l)
-	fmt.Printf("area of rectangle: %d\n", area)
-	fmt.Printf("circumference of rectangle: %d \n", circum)
+	for {
+		fmt.Printf("\nChoose menu: ")
 
-	window(3)
-	insertNumToSlice()
-	model.GetBio()
+		text, _ := scanner.ReadString('\n')
+		text = strings.TrimSpace(text)
+
+		switch text {
+		case "1":
+			fmt.Println(rectangle.AreaOfRectangle(10, 10))
+
+		case "2":
+			fmt.Println(rectangle.CircumferenceOfRectangle(10, 10))
+
+		case "3":
+			area, circumference := rectangle.AreaAndCircumOfRectangle(10, 10)
+			fmt.Println("Area:", area)
+			fmt.Println("Circumference:", circumference)
+
+		case "4":
+			internal.Window(5, 10)
+
+		case "5":
+			internal.InsertNumToSlice()
+
+		case "6":
+			model.GetBio()
+
+		case "0":
+			fmt.Println("Goodbye!")
+			return
+
+		default:
+			fmt.Println("Invalid menu")
+		}
+	}
 }
