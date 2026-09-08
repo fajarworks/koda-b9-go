@@ -8,6 +8,7 @@ import (
 
 	"github.com/fajarworks/koda-b9-go/internal"
 	"github.com/fajarworks/koda-b9-go/internal/model"
+	"github.com/fajarworks/koda-b9-go/internal/pkg"
 	"github.com/fajarworks/koda-b9-go/internal/rectangle"
 )
 
@@ -20,6 +21,7 @@ func main() {
 	fmt.Println("4. Make a window with loop")
 	fmt.Println("5. Insert a 88 after 66 in slices")
 	fmt.Println("6. Create biodata from struct field")
+	fmt.Println("7. Read and File")
 	fmt.Println("0. Exit")
 	fmt.Println()
 	fmt.Println("========================================")
@@ -53,12 +55,18 @@ func main() {
 		case "6":
 			model.GetBio()
 
+		case "7":
+			res, err := pkg.OpenAndReadFile(".\\readme.md")
+			fmt.Println(err)
+			fmt.Print(res)
+
 		case "0":
 			fmt.Println("Goodbye!")
-			return
+			os.Exit(0)
 
 		default:
 			fmt.Println("Invalid menu")
 		}
 	}
+
 }
