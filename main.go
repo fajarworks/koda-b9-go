@@ -7,9 +7,9 @@ import (
 	"strings"
 
 	"github.com/fajarworks/koda-b9-go/internal"
+	"github.com/fajarworks/koda-b9-go/internal/filereader"
 	"github.com/fajarworks/koda-b9-go/internal/model"
 	"github.com/fajarworks/koda-b9-go/internal/rectangle"
-	"github.com/fajarworks/koda-b9-go/pkg"
 )
 
 func main() {
@@ -57,7 +57,7 @@ func main() {
 			model.GetBio()
 
 		case "7":
-			res, err := pkg.OpenAndReadFile(".\\readme.md")
+			res, err := filereader.OpenAndReadFile(".\\readme.md")
 			fmt.Println(err)
 			fmt.Print(res)
 
