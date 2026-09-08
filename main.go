@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/fajarworks/koda-b9-go/internal"
+	"github.com/fajarworks/koda-b9-go/internal/checkout"
 	"github.com/fajarworks/koda-b9-go/internal/filereader"
 	"github.com/fajarworks/koda-b9-go/internal/model"
 	"github.com/fajarworks/koda-b9-go/internal/rectangle"
@@ -23,6 +24,7 @@ func main() {
 	fmt.Println("6. Create biodata from struct field")
 	fmt.Println("7. Read and File")
 	fmt.Println("8. Get Person From Struct")
+	fmt.Println("9. Checkout")
 	fmt.Println("0. Exit")
 	fmt.Println()
 	fmt.Println("========================================")
@@ -75,6 +77,32 @@ func main() {
 			fmt.Println(result)
 			greet = person.Greet()
 			fmt.Println(greet)
+
+		case "9":
+			var shoppingList []uint = []uint{1000, 2000, 3000, 4000, 5000, 0}
+
+			bank := checkout.Bank{}
+			online := checkout.Online{}
+			ficticious := checkout.Ficticious{}
+
+			res, err := checkout.PayBill(bank, shoppingList)
+			if err != nil {
+				fmt.Println("error:", err)
+			} else {
+				fmt.Println(res)
+			}
+			res, err = checkout.PayBill(online, shoppingList)
+			if err != nil {
+				fmt.Println("error:", err)
+			} else {
+				fmt.Println(res)
+			}
+			_, err = checkout.PayBill(&ficticious, shoppingList)
+			if err != nil {
+				fmt.Println("error:", err)
+			}
+
+			fmt.Println(ficticious.GetTotalFictious())
 
 		case "0":
 			fmt.Println("Goodbye!")
