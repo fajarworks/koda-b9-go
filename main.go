@@ -8,8 +8,8 @@ import (
 
 	"github.com/fajarworks/koda-b9-go/internal"
 	"github.com/fajarworks/koda-b9-go/internal/model"
-	"github.com/fajarworks/koda-b9-go/internal/pkg"
 	"github.com/fajarworks/koda-b9-go/internal/rectangle"
+	"github.com/fajarworks/koda-b9-go/pkg"
 )
 
 func main() {
