@@ -22,6 +22,7 @@ func main() {
 	fmt.Println("5. Insert a 88 after 66 in slices")
 	fmt.Println("6. Create biodata from struct field")
 	fmt.Println("7. Read and File")
+	fmt.Println("8. Get Person From Struct")
 	fmt.Println("0. Exit")
 	fmt.Println()
 	fmt.Println("========================================")
@@ -59,6 +60,21 @@ func main() {
 			res, err := pkg.OpenAndReadFile(".\\readme.md")
 			fmt.Println(err)
 			fmt.Print(res)
+
+		case "8":
+
+			person := model.NewPerson("maaruf", "palopo", "081234567890")
+			result := person.GetPersonData()
+			fmt.Println(result)
+			greet := person.Greet()
+			fmt.Println(greet)
+
+			person.SetPersonName("hidayat")
+
+			result = person.GetPersonData()
+			fmt.Println(result)
+			greet = person.Greet()
+			fmt.Println(greet)
 
 		case "0":
 			fmt.Println("Goodbye!")
